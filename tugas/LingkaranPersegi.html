@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas - Menghitung Lingkaran dan Persegi Panjang</title>
+</head>
+<body>
+
+    <h1>Menghitung Luas Persegi Panjang dan Lingkaran</h1>
+    <script>
+        function persegiPanjang(p,l) { //fungsi biasa
+            let luas = p * l; //proses hitung luas
+            return luas; //pengembalian luas
+        }
+
+        const persegiPanjangArrow =  (p,l) => `${p*l}` //fugsi arrow
+        
+        let p = 10; //panjang persegi panjang
+        let l = 5; //lebar persegi panjang
+        let luas = persegiPanjang(p,l); //hitug luas persegi panjang
+        
+        //menampilkan hasil fungsi biasa
+        document.write("Panjang persegi panjang: " + p + " <br>");
+        document.write("Lebar persegi panjang: " + l + " <br>");
+        document.write("Luas Persegi Panjang Adalah: " + luas + " <br><br>");
+        //menampilkan hasil fungsi arrow
+        document.write(`Panjang persegi panjang: ${p} <br>`);
+        document.write(`Lebar persegi panjang: ${l} <br>`);
+        document.write(`Luas Persegi Panjang Adalah: ${p} * ${l} = ${persegiPanjangArrow(p, l)} <br> <br>`);
+        
+        function lingkaran(p,l) { //fungsi biasa
+            let luasLingkaran = pi * r * r; //proses hitung luas lingkaran
+            return luasLingkaran; //pengembalian luas lingkaran
+        }
+
+        const lingkaranArrow =  (pi,r) => `${pi * r * r}` //fugsi arrow
+
+        let pi = 3.14; //konstanta lingkaran
+        let r = 7; //jari - jari lingkaran
+        let luasLingkaran = lingkaran(pi * r * r); //hitug luas lingkaran
+
+        //menampilkan hasil fungsi biasa
+        document.write("Nilai Konstanta Lingkaran: " + pi + " <br>");
+        document.write("Jari-jari lingkaran: " + r + " <br>");
+        document.write("Luas Lingkaran Adalah: " + luasLingkaran + " <br><br>");
+        
+        //menampilkan hasil fungsi arrow
+        document.write(`Nilai Konstanta Lingkaran: ${pi} <br>`);
+        document.write(`jari-jari lingkaran: ${r} <br>`);
+        document.write(`Luas Lingkaran Adalah: ${pi} * ${r} * ${r}   = ${lingkaranArrow(pi,r)} <br> <br>`);
+
+    </script>
+</body>
+</html>
