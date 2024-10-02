@@ -1,0 +1,45 @@
+h1{
+    color: palevioletred;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h2{
+    color: palevioletred;
+    text-align: justify;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15pt;
+}
+
+body{
+    background-color: beige;
+}
+
+ul, li{
+    text-decoration: none;
+}
+
+table{
+    border: 10px palevioletred;
+    margin: auto;
+}
+
+tr{
+    padding: 5px;
+    border: 10px palevioletred;
+}
+
+tr:hover{
+    background-color: pink;
+    color: black;
+    font-size: 5;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#paragraph{
+    text-align: center;
+    font-size: small;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10;
+    color: rgb(66, 122, 242);
+}

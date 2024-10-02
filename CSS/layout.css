@@ -1,0 +1,54 @@
+/* selector universal (*) mengatur seluruh tag secara bersamaan */
+*{
+/* css layout */
+box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+}
+/* pembuatan css class */
+.header{
+    background-image: url(../image/bg-image.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    padding: 20px;
+}
+
+.navbar{
+    overflow: hidden; /*untuk membuat posisi box*/
+    background-color: pink;
+    text-decoration: none;
+    padding: 14px 16px;
+    text-align: center;
+}
+
+navbar:hover{
+    background-color: white;
+    color: black;
+}
+
+.column{
+    float: left;
+    padding: 10;
+}
+.column.side{
+    width: 25%;
+}
+.column.middle{
+    width: 50%;
+}
+
+.row:after{
+    content: "";
+    display: block;
+    clear: both; /*membersihkan cache float sebelumnya*/
+}
+
+.footer{
+    background-color: pink;
+    padding: 10px;
+    text-align: center;
+}

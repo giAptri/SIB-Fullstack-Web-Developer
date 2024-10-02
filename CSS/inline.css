@@ -1,0 +1,26 @@
+/* Style untuk block element */
+
+.block-element {
+  background-color: aliceblue;
+  margin: 10px 0; /*salah satu syarat block element*/
+  padding: 20px;
+  border: 1px solid blue;
+  width: 100%; /*syarat lanjutan block element, tampilan penuh satu baris layar*/
+}
+
+.inline-element {
+    background-color: aliceblue;
+    padding: 2px 5px;
+    border: 1px solid blue;
+}
+
+nav a{
+    color: blueviolet;
+    pad: 5px 10px;
+    border: 1px solid rgb(84, 160, 226);
+    background-color: aquamarine;
+}
+
+nav a:hover{
+    text-decoration: none;
+}

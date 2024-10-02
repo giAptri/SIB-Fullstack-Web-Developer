@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+<!-- Membuat Form Sederhana -->
+    <form action="" method="POST" autocomplete="on">
+        
+        <!-- Isian Nama -->
+        <label for="nama">Nama :</label>
+        <input type="text" id="nama" name="nama" placeholder="Masukan Nama Anda" minlength="3" required><br><br>
+        
+        <!-- Isian E-mail -->
+        <label for="email">E-mail :</label>
+        <input type="email" name="email" id="email"  placeholder="Masukan E-mail" required><br><br>
+       
+        <!-- Password -->
+        <label for="password">Password :</label>
+        <input type="password" name="password" id="password" minlength="3" maxlength="7" required><br><br>
+       
+        <!-- Isian Umur -->
+        <label for="umur">Umur :</label>
+        <input type="number" name="umur" id="number" min="18" max="50"><br><br>
+        <!-- Isian Tanggal Lahir -->
+        <input type="datetime-local" name="tanggal lahir" id=""><br><br>
+        
+        <!-- Radio Button Gender -->
+        <label for=""><input type="radio" name="gender" value="male">Laki-Laki</label>
+        <label for=""><input type="radio" name="gender" value="female">Perempuan</label><br><br>    
+       
+        <!-- Checkbox -->
+        <label for=""><input type="checkbox" name="terms" required>Saya Setuju Dengan Syarat dan Ketentuan</label><br><br>
+       
+        <!-- Dropdown : Select,Option -->
+        <select name="country" id="">
+            <option value="indonesia">Indonesia</option>
+            <option value="malaysia">Malaysia</option>
+            <option value="singapore">Singapore</option>
+            <option value="china">China</option>
+            <option value="zimbabwe">Zimbabwe</option>
+        </select><br><br>
+
+        <textarea name="comments" rows="4" cols="50" placeholder="Masukan Komentar"></textarea><br><br>
+
+        <!-- Input dan Submit -->
+        <!-- <input type="submit" value="kirim"> -->
+        <button type="submit">Kirim</button>
+        <button type="reset">Reset</button>
+
+    </form>
+</body>
+</html>

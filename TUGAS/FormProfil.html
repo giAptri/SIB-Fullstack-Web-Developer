@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Data Diri </title>
+</head>
+<body>
+
+    <!-- Judul Form -->
+    <h1 style="color: rgb(255, 0, 179); text-align: center;">Argya Arya Putri</h1><hr>
+    <h2>Form Data Diri</h2>
+
+    <!-- Tugas Membuat Form Sederhana -->
+    <form action="" method="post" autocomplete="on">
+
+    <!-- Isian Nama : Nama Harus Di Isi dan Minimal 3 Karakter  -->
+     <label for="fullname">Nama :</label>
+     <input type="text" name="fullname" id="fullname" placeholder="Masukan Nama Anda" minlength="3" required> <br><br>
+
+    <!-- Isian E-mail : E-mail Harus Valid dan Di Isi -->
+     <label for="email">E-mail :</label>
+     <input type="email" name="email" id="email" placeholder="Masukan Email Anda" required> <br><br>
+
+    <!-- Password : Password Minimal 8 Karakter dan Harus Di Isi -->
+     <label for="password">Password :</label>
+     <input type="password" name="password" id="password" minlength="8" required> <br><br>
+
+    <!-- Tanggal Lahir : Harus Di Isi dan Pengguna Harus Berumur Min 18th -->
+    <!-- Umur Min 18th -->
+     <label for="umur">Umur :</label>
+     <input type="number" name="umur" id="number" min="18" required> <br><br>
+    <!-- Isian Tanggal Lahir -->
+     <input type="datetime-local" name="tanggal lahir" id="" required><br><br>
+
+    <!-- Jenis Kelamin : Wajib Di Pilih -->
+     <label><input type="radio" name="gender" id="gender" required>Laki - Laki</label>
+     <Label><input type="radio" name="gender" id="gender" required>Perempuan</Label> <br><br>
+    
+    <!-- Nomor Handphone : Hanya Angka, 10-13 Digit -->
+     <label for="phone">Nomor Handphone</label>
+     <input type="tel" name="phone" id="phone" placeholder="Masukan Nomor Handphone" minlength="10" maxlength="13" required> <br><br>
+    
+    <!-- Unggah Foto Profil -->
+     <label for="profilePicture">Pilih Foto Profil :</label><br>
+        <input type="file" id="profilePicture" name="profilePicture" accept="image/*" required><br><br>
+        <!-- Submit Foto -->
+        <input type="submit" value="Unggah"> <br> <br>
+
+    <!-- Checkbox : Harus Di Setujui -->
+    <label for=""><input type="checkbox" name="terms" required>Saya Setuju Dengan Syarat dan Ketentuan</label><br><br>
+     
+    <!-- Button Submit -->
+     <button type="submit">Submit</button>
+
+    </form>
+
+</body>
+</html>

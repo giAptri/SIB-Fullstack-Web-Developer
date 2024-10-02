@@ -1,0 +1,73 @@
+/* Style untuk block element */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* .clearfix:after{
+    content: "";
+    display: table;
+    clear: both;
+} */
+
+.block-element {
+  background-color: aliceblue;
+  margin: 10px 0; /*salah satu syarat block element*/
+  padding: 20px;
+  border: 1px solid blue;
+  width: 100%; /*syarat lanjutan block element, tampilan penuh satu baris layar*/
+}
+
+/* .flex-container{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+} */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-gap: 20px;
+  margin: 20px 0;
+}
+.inline-element {
+  background-color: aliceblue;
+  padding: 2pc 5px;
+  border: 1px solid blue;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+/* section.block-element{
+    flex: 0 0 70%;
+} */
+
+/* nav.block-element{
+    float: left;
+    width: 60%;
+} */
+/* .sidebar{
+    float: right;
+    width: 30%;
+} */
+
+/* .inline-element {
+  background-color: aliceblue;
+  padding: 2px 5px;
+  border: 1px solid blue;
+} */
+
+nav a {
+  color: blueviolet;
+  pad: 5px 10px;
+  border: 1px solid rgb(84, 160, 226);
+  background-color: aquamarine;
+}
+
+nav a:hover {
+  text-decoration: none;
+}
