@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>conditional - multi</title>
+</head>
+<body>
+    <script>
+        let nama = "Argya Arya Putri";
+        let nilai = 70;
+        let grade = "";
+
+        if(nilai > 85 && nilai <= 100) grade = "A";
+        else if(nilai > 75 && nilai <= 84) grade = "B";
+        else if(nilai > 60 && nilai <= 74) grade = "C";
+        else if(nilai > 50 && nilai <= 59) grade = "D";
+        else if (nilai > 0 && nilai <= 29) grade = "E";
+        else grade = "";
+
+        document.write("Siswa Atas Nama: " + nama + "<br>Dengan Nilai: " + nilai + "<br>Mendapatkan Grade: " + grade + "<br>");
+    </script>
+</body>
+</html>

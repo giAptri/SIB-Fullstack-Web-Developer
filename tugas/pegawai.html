@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perhitungan Gaji Pegawai</title>
+<body>
+    <h1>Perhitungan Gaji Bersih</h1>
+    <label for="golongan">Pilih Golongan (1, 2, atau 3):</label>
+    <input type="number" id="golongan" min="1" max="3"><br><br>
+
+    <label for="menikah">Sudah Menikah:</label>
+    <input type="checkbox" id="menikah"><br><br>
+
+    <button onclick="hitungGajiBersih()">Hitung Gaji (If-Else)</button>
+    <button onclick="hitungGajiSwitch()">Hitung Gaji (Switch-Case)</button>
+
+    <script>
+        function hitungGajiBersih() {
+            // Mendapatkan nilai golongan dan status menikah dari input
+            let golongan = parseInt(document.getElementById("golongan").value);
+            let menikah = document.getElementById("menikah").checked;
+            
+            // Deklarasi variabel untuk gaji dan tunjangan
+            let gaji = 0;
+            let tunjangan = 0;
+            
+            // Pendekatan menggunakan if-else
+            if (golongan === 1) {
+                gaji = 10000000;
+            } else if (golongan === 2) {
+                gaji = 15000000;
+                if (menikah) {
+                    tunjangan = 2000000; // Tunjangan untuk golongan 2 yang sudah menikah
+                }
+            } else if (golongan === 3) {
+                gaji = 20000000;
+            } else {
+                document.write("<p>Golongan tidak valid.</p>");
+                return;
+            }
+            
+            let gajiBersih = gaji + tunjangan;
+            document.write("<p>Gaji Bersih: Rp " + gajiBersih + "</p>");
+        }
+
+        function hitungGajiSwitch() {
+            // Mendapatkan nilai golongan dan status menikah dari input
+            let golongan = parseInt(document.getElementById("golongan").value);
+            let menikah = document.getElementById("menikah").checked;
+            
+            // Deklarasi variabel untuk gaji dan tunjangan
+            let gaji = 0;
+            let tunjangan = 0;
+            
+            // Pendekatan menggunakan switch-case
+            switch (golongan) {
+                case 1:
+                    gaji = 10000000;
+                    break;
+                case 2:
+                    gaji = 15000000;
+                    if (menikah) {
+                        tunjangan = 2000000; // Tunjangan untuk golongan 2 yang sudah menikah
+                    }
+                    break;
+                case 3:
+                    gaji = 20000000;
+                    break;
+                default:
+                    document.write("<p>Golongan tidak valid.</p>");
+                    return;
+            }
+            
+            let gajiBersih = gaji + tunjangan;
+            document.write("<p>Gaji Bersih: Rp " + gajiBersih + "</p>");
+        }
+    </script>
+</head>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional - if & ternary</title>
+</head>
+<body>
+    <script>
+        //contoh if conditional
+        //kondisi yang hanya memiliki satu syarat
+        let pelanggan = "Budi Santoso";
+        let totalBelanja = 150000;
+        let keterangan = ""; //undifined
+
+        if(totalBelanja > 100000){
+            keterangan = "Selamat " + pelanggan + " Anda mendapat Hadiah !!!";
+        } else {
+            keterangan = " Terimakasih Sudah Belanja.";
+        }
+        
+        document.write("Atas Nama Pelanggan: " + pelanggan + "<br>Memiliki keterangan: " + keterangan);
+        document.write("<hr>");
+
+        let deskripsi = (totalBelanja > 100000) ? "Dapat Hadiah" : "Hanya Ucapan Terimakasih";
+
+        document.write("Pelanggan Bernama: " + pelanggan + "Dengan Total Belanja: " + totalBelanja + " Dinyatakan " + deskripsi);
+    </script>
+</body>
+</html>

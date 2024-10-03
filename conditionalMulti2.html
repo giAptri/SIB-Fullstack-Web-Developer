@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multiple - product</title>
+  </head>
+  <body>
+    <script>
+      //tv seharga  3 juta dan kulkas seharga 5 juta
+      //AC seharga 5 juta
+      //seandainya pelanggan membeli ac maka dapat diskon 5% sisanya tidak
+
+      let pelanggan = "Argya";
+      let produk = "TV";
+    //   //tentukan harga masing masing produk
+    //   if (produk == "TV") {
+    //     harsat = 3000000;
+    //   } else if (product == "kulkas") {
+    //     harsat = 4000000;
+    //   } else if (product == "AC") {
+    //     harsat = 5000000;
+    //   } else {
+    //     harsat = 0;
+    //   }
+
+      let harsat = 0;
+      switch (produk) {
+          case "TV": harsat = 3000000; break;
+          case "kulkas": harsat = 4000000; break;
+          case "AC": harsat = 5000000; break;
+          default: harsat = 0;
+      }    
+
+      //tentukan beli, total harga dan total diskon
+      let jumlahBeli = 10;
+      let bruto = harsat * jumlahBeli;
+      //buat ternary
+      let diskon = produk == "AC" ? 0.1 * bruto : 0;
+
+      document.write(
+        "Data Pembelian: " +
+          "<br>Nama Pelanggan: " +
+          pelanggan +
+          "<br>Produk yang di pilih: " +
+          produk +
+          "<br>Harga Satuan: " +
+          harsat +
+          "<br>Harga Kotor: " +
+          bruto +
+          "<br>Total Diskon: " +
+          diskon
+      );
+    </script>
+  </body>
+</html>

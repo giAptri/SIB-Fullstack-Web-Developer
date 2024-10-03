@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional - nested</title>
+</head>
+<body>
+    <script>
+        let username = prompt("Username");
+        let password = prompt("Password");
+
+        if(username == "user"){
+            if(password == "pass"){
+                document.write("<h2>Selamat Datang di Dashboard</h2>");
+            } else {
+                document.write("<h2>Password yang anda masukkan salah</h2>");
+            }
+        } else {
+            document.write("Anda Tidak Memiliki Akun"); 
+        }
+    </script>
+</body>
+</html>
