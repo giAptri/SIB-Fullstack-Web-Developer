@@ -1,0 +1,86 @@
+<title>Nilai - Siswa</title>
+<body>
+    <h1 align="center">Hasil Nilai Siswa</h1>
+</body>
+<script>
+    let s1 = {'Nama': 'Argya Arya Putri', 'Nilai': 80}; //buatlah 5 data
+    let s2 = {'Nama': 'Hartanto Wawangi Mukti', 'Nilai': 70};
+    let s3 = {'Nama': 'Fadhilah Neza Solikhah', 'Nilai': 50};
+    let s4 = {'Nama': 'Dimas Rio Adi saputra', 'Nilai': 60};
+    let s5 = {'Nama': 'Aulia Natasya', 'Nilai': 75};
+    
+    let siswa = [s1, s2, s3, s4, s5]; //tambah 5 data diatas
+
+    //buatlah table dengan header column NO, Nama, Nilai, Keterangan, Grade, Predikat
+    //dengan ketentuan nilai di atas 60 maka lulus (ternary)
+    //rincian nilai
+    //85-100 grade A, 75-84 grade B, 60-74 grade C, 30-59 grade D, 0-29 grade E
+    function getGrade(nilai) {
+        if (nilai >= 85) return 'A';
+        if (nilai >= 75) return 'B';
+        if (nilai >= 60) return 'C';
+        if (nilai >= 30) return 'D';
+        return 'E';
+    }
+
+    function getPredikat(grade) {
+        switch (grade) {
+            case 'A': return 'Sangat Baik';
+            case 'B': return 'Baik';
+            case 'C': return 'Cukup';
+            case 'D': return 'Kurang';
+            case 'E': return 'Sangat Kurang';
+            default: return '';
+        }
+    }
+</script>
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #e76ab7;
+    }
+</style>
+
+<table style="padding: 10px; text-align: center; width: 100%; border: 1px solid black">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Nilai</th>
+            <th>Keterangan</th>
+            <th>Grade</th>
+            <th>Predikat</th>
+        </tr>
+    </thead>
+    <tbody>
+        <script>
+            let no = 1;
+            for (let s of siswa) {
+                let keterangan = s.Nilai >= 60 ? 'Lulus' : 'Tidak Lulus';
+                let grade = getGrade(s.Nilai);
+                let predikat = getPredikat(grade);
+
+                document.write(`<tr>
+                    <td>${no}</td>
+                    <td>${s.Nama}</td>
+                    <td>${s.Nilai}</td>
+                    <td>${keterangan}</td>
+                    <td>${grade}</td>
+                    <td>${predikat}</td>
+                </tr>`);
+                no++;
+            }
+        </script>
+    </tbody>
+</table>

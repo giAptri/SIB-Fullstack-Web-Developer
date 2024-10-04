@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>looping</title>
+</head>
+<body>
+    <script>
+        //cetak angka dari 1 - 10
+        let angka; //variabel undifined
+
+        for(angka=1; angka <= 10; angka++){ //increment
+            document.write('<br>No.' + angka);
+        }
+        // document.write("angka 1");
+        // document.write("angka 2");
+        document.write("<hr>");
+
+        let angka1;
+        for(angka1=10; angka1 >= 1; angka1--){ //decrement
+            document.write('<br>No.' + angka1);
+        }
+
+        document.write("<hr>");
+
+        let ganjil;
+
+        for(ganjil=1; ganjil <= 30; ganjil++){
+            if(ganjil % 2 == 1) //%modulus => sisa bagi
+            document.write('<br>cetak bilangan ganjil' + ganjil);
+        }
+
+        document.write("<hr>");
+
+        let y = 0;
+        while(y < 4){
+            document.write('<br>tampilkan angka ' + y);
+            y++;
+        }
+
+    </script>
+</body>
+</html>

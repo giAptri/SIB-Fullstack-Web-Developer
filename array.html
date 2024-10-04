@@ -1,0 +1,15 @@
+<script>
+    let buah = ["Apel", "Aprikot", "Alpukat", "Pisang"];
+
+    document.write('data lama pada index ke 2 adalah: ' +buah[2]);//menampilkan data satu index
+
+    buah[2] = "jeruk";
+    document.write('<br>data baru pada index ke 2 adalah: ' +buah[2]);//menampilkan data satu index
+
+    document.write('<hr>');
+
+    for(let i=0; i< buah.length; i++) //length : panjang stirng yang akan di cetak
+    {
+        document.write('<br> tampilkan list data buah: ' + buah[i]);
+    }
+</script>

@@ -1,0 +1,42 @@
+<script>
+    let p1 = {'nama' : 'Argya', 'divisi' : 'SDM', 'gaji' : '1000000'};
+    let p2 = {'nama' : 'Dela', 'divisi' : 'Keuangan', 'gaji' : '1500000'};
+    let p3 = {'nama' : 'Tasya', 'divisi' : 'Marketing', 'gaji' : '2000000'};
+    let p4 = {'nama' : 'Lidiana', 'divisi' : 'Dirut', 'gaji' : '3000000'};
+
+    let pegawai = [p1, p2, p3, p4];
+
+    // for (let i = 0; i < pegawai.length; i++) {
+    //     document.write("<br> " + pegawai[i])
+    // }
+    
+    for (p of pegawai){
+        document.write("<br> " + p.nama)
+        document.write("<br> " + p.divisi)
+        document.write("<br> " + p.gaji)
+        
+    }
+    document.write("<hr>")
+</script>
+<table style="padding: 10; text-align: center;  width: 100%; border: 1px solid black">
+
+    <thead>
+        <tr>
+            <th>Nama</th>
+            <th>Divisi</th>
+            <th>Gaji</th>
+        </tr>
+    </thead>
+    <tbody>
+        <script>
+            for (p of pegawai){
+                document.write(`<tr>
+                        <td>${p.nama}</td>
+                        <td>${p.divisi}</td>
+                        <td>${p.gaji}</td>
+                    </tr>`);       
+            }
+
+        </script>
+    </tbody>
+</table>

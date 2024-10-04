@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>javascript arraydan mobil</h1>
+    <ul id="mobil">
+        <li></li>
+    </ul>
+    <script>
+        //contoh looping  menggunakan for of untuk akses array
+        const cars = ["BMW", "Volvo", "Saab", "Ford", "Fiat", "Audi"];
+        let dataMobil = '';
+        for(c of cars){
+            dataMobil += `<li> ${c} </li>`;
+        }
+
+        document.getElementById("mobil").innerHTML = dataMobil;
+
+    </script>
+    <script>
+        //for in biasanya di gunakan untuk memanggil objek
+        //for in dapat memanggil key dan value
+        document.write('</hr>');
+        let p1 = {
+            'Nama': 'Argya', 'Divisi': 'IT', 'Gaji': 30000000
+        }
+        //for in akses key saja
+        for(x in p1){
+            document.write(`<br>Key: `+ x);
+        }
+        //for in akses value saja
+        for(y in p1){
+            document.write(`<br>Value: `+ p1[y]);
+        }
+        //for in akses key dan value
+        for(z in p1){
+            document.write("&nbsp |" + z,  ":" , p1[z]);  
+        }
+        //array di js hanya dapat mengelompokan data dari satu tipe data yang sama
+        //objek dapat mengelompokan dari beberapa tipe data yang berbeda
+        //objek terdiri dari key dan value, contoh key: 'nama', 'divisi' (biasanya dalam column dalam table). 
+        //contoh value: 'Argya', 'IT'
+        //objek di dalam js mirip dengan array assosiative di dalam php
+    </script>
+</body>
+</html>
