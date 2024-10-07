@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan DOM - Ubah Text Element HTML</title>
+</head>
+<body>
+    
+    <h1 id="judul">Selamat Datang di DOM HTML</h1>
+    <button onclick="ubahtext()">Ubah Text</button>
+
+    <h1 id="paragraf1">Contoh Ubah Style</h1>
+    <button onclick="ubahgaya()">Ubah Gaya</button>
+
+    <hr>
+    <div id="content">
+        <p id="paragraf2">Ini Paragraf</p>
+    </div>
+    <button onclick="tambahelemen()">Tambah Paragraf</button>
+    <button onclick="hapuselemen()">Hapus Paragraf</button>
+    <script>
+        //contoh mengubah element HTML
+        //function declaration
+        function ubahtext(){
+            document.getElementById("judul").innerText = "Text Telah di Ubah";
+        }
+
+        function ubahgaya(){
+            document.getElementById("paragraf1").style.color = "pink";
+            document.getElementById("paragraf1").style.fontSize = "30px";
+        }
+
+        function tambahelemen(){
+            let paragrafBaru = document.createElement("p"); //membantu mengelola tag html agar tertambah
+            paragrafBaru.innerText = "Paragraf Baru Telah Di Tambahkan";
+            document.getElementById("content").appendChild(paragrafBaru);
+        }
+
+        function hapuselemen(){
+            let content = document.getElementById("content");
+            let paragraf = document.querySelector("p");
+
+            if(content.contains(paragraf)){
+                content.removeChild(paragraf);
+            } else {
+                alert("Paragraf Tidak Ditemukan");
+            }
+
+        }
+    </script>
+</body>
+</html>
