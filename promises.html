@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contoh Async Promses</title>
+</head>
+<body>
+
+    <!-- membuat testing untuk mengetahui API bisa di akses atau tidak -->
+     <button onclick="fetchdata()">Testing Data API Promise</button>
+     <h1 id="result"></h1>
+    <script>
+        //membuat fungsi fetchdata API (simulasi)
+        function fetchdata(){
+            let promises = new Promise((resolve, reject)=> {
+                setTimeout(() => { //set waktu timeout
+                    let succes = true
+                    if(succes){
+                        resolve("Data Berhasil di Ambil")
+                    } else {
+                        reject("Data Terjadi Kesalahan")
+                    }
+                }, 2000)
+            });
+            promises.then((message) => {
+                document.getElementById("result").innerText = message;
+            }).catch((error) => {
+                document.getElementById("result").innerText = error;
+            })
+        }
+    </script>
+
+</body>
+</html>
