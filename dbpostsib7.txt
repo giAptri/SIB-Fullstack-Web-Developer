@@ -1,0 +1,126 @@
+-----Soal 2.3--------------------
+
+"Menampilkan produk yang kode awalnya huruf M"
+SELECT * FROM jenis_produk 
+WHERE nama NOT LIKE 'M%';
+---------------------------------
+Hasil:
++----+------------+
+| id | nama       |
++----+------------+
+|  1 | elektronik |
+|  2 | furniture  |
+|  5 | komputer   |
++----+------------+
+
+"Menampilkan produk-produk televisi"
+SELECT * FROM produk
+WHERE nama LIKE 'Televisi%';
+----------------------------------
+Hasil:
++----+------+------------------+------------+------------+------+----------+-----------------+
+| id | kode | nama             | harga_beli | harga_jual | stok | min_stok | jenis_produk_id |
++----+------+------------------+------------+------------+------+----------+-----------------+
+|  1 | TV01 | Televisi 21 inch |    3500000 |    5241600 | NULL |        2 |               1 |
+|  2 | TV02 | Televisi 40 inch |    5500000 |    7737600 |    5 |        2 |               1 |
++----+------+------------------+------------+------------+------+----------+-----------------+
+
+"Menampilkan pelanggan yang mengandung huruf SA"
+SELECT * FROM pelanggan 
+WHERE nama LIKE '%sa%';
+------------------------------------
+Hasil:
++----+------+-------------+------+-----------+------------+------------------+----------+
+| id | kode | nama        | jk   | tmp_lahir | tgl_lahir  | email            | kartu_id |
++----+------+-------------+------+-----------+------------+------------------+----------+
+|  9 | C009 | Ahmad Hasan | L    | Surabaya  | 1992-10-15 | ahasan@gmail.com |        4 |
+| 10 | C010 | Cassanndra  | P    | Belfast   | 1990-11-20 | casa90@gmail.com |        1 |
++----+------+-------------+------+-----------+------------+------------------+----------+
+
+"Menampilkan pelanggan yang lahirnya bukan di Jakarta dan mengandung huruf yo"
+SELECT * FROM pelanggan
+WHERE tmp_lahir != 'Jakarta'
+AND tmp_lahir LIKE '%yo%';
+------------------------------------
+Hasil:
++----+------+--------------+------+------------+------------+-----------------+----------+
+| id | kode | nama         | jk   | tmp_lahir  | tgl_lahir  | email           | kartu_id |
++----+------+--------------+------+------------+------------+-----------------+----------+
+|  2 | C002 | Pandan Wangi | P    | Yogyakarta | 1950-01-01 | wangi@gmail.com |        2 |
++----+------+--------------+------+------------+------------+-----------------+----------+
+
+"Menampilkan pelanggan yang karakter huruf ke – 2 nya adalah A"
+SELECT * FROM pelanggan 
+WHERE nama LIKE '_a%';
+------------------------------------
+Hasil:
++----+------+--------------+------+------------+------------+------------------+----------+
+| id | kode | nama         | jk   | tmp_lahir  | tgl_lahir  | email            | kartu_id |
++----+------+--------------+------+------------+------------+------------------+----------+
+|  2 | C002 | Pandan Wangi | P    | Yogyakarta | 1950-01-01 | wangi@gmail.com  |        2 |
+|  6 | C006 | Gayatri Dwi  | P    | Jakarta    | 1987-11-28 | gaya87@gmail.com |        1 |
+| 10 | C010 | Cassanndra   | P    | Belfast    | 1990-11-20 | casa90@gmail.com |        1 |
++----+------+--------------+------+------------+------------+------------------+----------+
+
+-----Soal 2.4--------------------
+
+"Menampilkan produk yang paling murah"
+SELECT * FROM produk
+ORDER BY harga_jual ASC
+LIMIT 1;
+-----------------------------------
+Hasil:
++----+------+-----------+------------+------------+------+----------+-----------------+
+| id | kode | nama      | harga_beli | harga_jual | stok | min_stok | jenis_produk_id |
++----+------+-----------+------------+------------+------+----------+-----------------+
+|  7 | TB01 | Teh Botol |       2000 |       3025 |   39 |       10 |               4 |
++----+------+-----------+------------+------------+------+----------+-----------------+
+
+"Menampilkan produk yang stoknya paling banyak"
+SELECT * FROM produk
+ORDER BY stok DESC
+LIMIT 1;
+-----------------------------------
+Hasilnya:
++----+------+-----------+------------+------------+------+----------+-----------------+
+| id | kode | nama      | harga_beli | harga_jual | stok | min_stok | jenis_produk_id |
++----+------+-----------+------------+------------+------+----------+-----------------+
+|  7 | TB01 | Teh Botol |       2000 |       3025 |   39 |       10 |               4 |
++----+------+-----------+------------+------------+------+----------+-----------------+
+
+"Menampilkan dua produk yang stoknya paling sedikit"
+SELECT * FROM produk
+ORDER BY stok ASC
+LIMIT 2;
+-----------------------------------
+Hasil:
++----+------+------------------+------------+------------+------+----------+-----------------+
+| id | kode | nama             | harga_beli | harga_jual | stok | min_stok | jenis_produk_id |
++----+------+------------------+------------+------------+------+----------+-----------------+
+|  1 | TV01 | Televisi 21 inch |    3500000 |    5241600 | NULL |        2 |               1 |
+|  3 | K001 | Kulkas 2 pintu   |    3500000 |    4867200 |    0 |        2 |               1 |
++----+------+------------------+------------+------------+------+----------+-----------------+
+
+"Menampilkan pelanggan yang paling muda"
+SELECT * FROM pelanggan
+ORDER BY tgl_lahir DESC
+LIMIT 1;
+----------------------------------
+Hasil:
++----+------+--------------+------+-----------+------------+------------------+----------+
+| id | kode | nama         | jk   | tmp_lahir | tgl_lahir  | email            | kartu_id |
++----+------+--------------+------+-----------+------------+------------------+----------+
+|  1 | C001 | Agung Sedayu | L    | Solo      | 2010-01-01 | sedayu@gmail.com |        1 |
++----+------+--------------+------+-----------+------------+------------------+----------+
+
+"Menampilkan pelanggan yang paling tua"
+SELECT * FROM pelanggan
+ORDER BY tgl_lahir ASC
+LIMIT 1;
+----------------------------------
+Hasil:
++----+------+--------------+------+------------+------------+-----------------+----------+
+| id | kode | nama         | jk   | tmp_lahir  | tgl_lahir  | email           | kartu_id |
++----+------+--------------+------+------------+------------+-----------------+----------+
+|  2 | C002 | Pandan Wangi | P    | Yogyakarta | 1950-01-01 | wangi@gmail.com |        2 |
++----+------+--------------+------+------------+------------+-----------------+----------+
