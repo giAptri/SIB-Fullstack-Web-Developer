@@ -1,0 +1,252 @@
+SOAL 3.2
+
+(jumlah pelanggan yang  tahun lahirnya 1998)
+mysql> SELECT COUNT(*) AS tgl_lahir FROM pelanggan WHERE YEAR(tgl_lahir) = 1998;
++-----------+
+| tgl_lahir |
++-----------+
+|         0 |
++-----------+
+1 row in set (0.00 sec)
+
+(jumlah pelanggan perempuan yang tempat lahirnya di jakarta)
+mysql> SELECT COUNT(*) FROM pelanggan WHERE jk = 'p' AND tmp_lahir = 'Jakarta';
++----------+
+| COUNT(*) |
++----------+
+|        2 |
++----------+
+1 row in set (0.03 sec)
+
+(jumlah total stok semua produk yang harga jualnya di bawah 10rb)
+mysql> SELECT SUM(stok)
+    -> FROM produk
+    -> WHERE harga_jual < 10000;
++-----------+
+| SUM(stok) |
++-----------+
+|        39 |
++-----------+
+1 row in set (0.03 sec)
+
+(produk yang mempunyain awalan k)
+mysql> SELECT COUNT(*)
+    -> FROM produk
+    -> WHERE kode LIKE 'K%';
++----------+
+| COUNT(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.03 sec)
+
+(harga jual rata rata produk yang di atas 1jt)
+mysql> SELECT AVG(harga_jual)
+    -> FROM produk
+    -> WHERE harga_jual > 1000000;
++-----------------+
+| AVG(harga_jual) |
++-----------------+
+|         8374400 |
++-----------------+
+1 row in set (0.03 sec)
+
+(tampilkan jumlah stok yang paling besar)
+mysql> SELECT MAX(stok)
+    -> FROM produk;
++-----------+
+| MAX(stok) |
++-----------+
+|        39 |
++-----------+
+1 row in set (0.03 sec)
+
+(produk yang stoknya kurang dari minimal stok)
+mysql> SELECT COUNT(*)
+    -> FROM produk
+    -> WHERE stok < min_stok;
++----------+
+| COUNT(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.00 sec)
+
+(toral asset)
+mysql> SELECT SUM(stok * harga_jual) AS total_asset
+    -> FROM produk;
++-------------+
+| total_asset |
++-------------+
+|   118365975 |
++-------------+
+1 row in set (0.00 sec)
+
+-------------------------------------------------------
+
+SOAL 3.3
+
+(Tampilkan data produk : id, nama, stok dan informasi jika stok telah sampai batas 
+minimal atau kurang dari minimum stok dengan informasi ‘segera belanja’ jika tidak ‘stok aman’.)
+mysql> SELECT id, nama, stok,
+    ->     CASE
+    ->         WHEN stok <= min_stok THEN 'Segera belanja'
+    ->    ELSE 'Stok Aman'
+    ->     END AS status_stok
+    -> FROM produk;
++----+------------------+------+----------------+
+| id | nama             | stok | status_stok    |
++----+------------------+------+----------------+
+|  1 | Televisi 21 inch | NULL | Stok Aman      |
+|  2 | Televisi 40 inch |    5 | Stok Aman      |
+|  3 | Kulkas 2 pintu   |    0 | Segera belanja |
+|  4 | Meja Makan       |    6 | Stok Aman      |
+|  5 | Teh Kotak        |    0 | Segera belanja |
+|  6 | PC Desktop HP    |    3 | Stok Aman      |
+|  7 | Teh Botol        |   39 | Stok Aman      |
+|  8 | Notebook Acer    |    1 | Segera belanja |
+|  9 | Notebook Lenovo  |    3 | Stok Aman      |
++----+------------------+------+----------------+
+9 rows in set (0.00 sec)
+
+(Tampilkan data pelanggan dengan kategori umur)
+mysql> SELECT id, nama,
+    ->     YEAR(CURDATE()) - YEAR(tgl_lahir) AS umur,
+    ->     CASE
+    ->         WHEN YEAR(CURDATE()) - YEAR(tgl_lahir) < 17 THEN 'Muda'
+    ->         WHEN YEAR(CURDATE()) - YEAR(tgl_lahir) BETWEEN 17 AND 55 THEN 'Dewasa'
+    ->         ELSE 'Tua'
+    ->     END AS kategori_umur
+    -> FROM pelanggan;
++----+---------------+------+---------------+
+| id | nama          | umur | kategori_umur |
++----+---------------+------+---------------+
+|  1 | Agung Sedayu  |   14 | Muda          |
+|  2 | Pandan Wangi  |   74 | Tua           |
+|  3 | Sekar Mirah   |   41 | Dewasa        |
+|  4 | Swandaru Geni |   43 | Dewasa        |
+|  5 | Pradabashu    |   39 | Dewasa        |
+|  6 | Gayatri Dwi   |   37 | Dewasa        |
+|  7 | Dewi Gyat     |   36 | Dewasa        |
+|  8 | Andre Haru    |   34 | Dewasa        |
+|  9 | Ahmad Hasan   |   32 | Dewasa        |
+| 10 | Cassanndra    |   34 | Dewasa        |
++----+---------------+------+---------------+
+10 rows in set (0.00 sec)
+
+(Tampilkan data produk dengan bonus)
+mysql> SELECT id, kode, nama,
+    ->     CASE
+    ->         WHEN kode = 'TV01' THEN 'DVD Player'
+    ->         WHEN kode = 'K001' THEN 'Rice Cooker'
+    ->         ELSE 'Tidak Ada'
+    ->     END AS bonus
+    -> FROM produk;
++----+------+------------------+-------------+
+| id | kode | nama             | bonus       |
++----+------+------------------+-------------+
+|  1 | TV01 | Televisi 21 inch | DVD Player  |
+|  2 | TV02 | Televisi 40 inch | Tidak Ada   |
+|  3 | K001 | Kulkas 2 pintu   | Rice Cooker |
+|  4 | M001 | Meja Makan       | Tidak Ada   |
+|  5 | TK01 | Teh Kotak        | Tidak Ada   |
+|  6 | PC01 | PC Desktop HP    | Tidak Ada   |
+|  7 | TB01 | Teh Botol        | Tidak Ada   |
+|  8 | AC01 | Notebook Acer    | Tidak Ada   |
+|  9 | LN01 | Notebook Lenovo  | Tidak Ada   |
++----+------+------------------+-------------+
+9 rows in set (0.00 sec)
+
+-------------------------------------------------------
+
+SOAL 3.4
+
+(Tampilkan data statistik jumlah tempat lahir pelanggan)
+mysql> SELECT tmp_lahir, COUNT(*) AS jumlah
+    -> FROM pelanggan
+    -> GROUP BY tmp_lahir;
++------------+--------+
+| tmp_lahir  | jumlah |
++------------+--------+
+| Solo       |      1 |
+| Yogyakarta |      1 |
+| Kediri     |      2 |
+| Pati       |      1 |
+| Jakarta    |      2 |
+| Surabaya   |      2 |
+| Belfast    |      1 |
++------------+--------+
+7 rows in set (0.03 sec)
+
+(Tampilkan jumlah statistik produk berdasarkan jenis produk)
+mysql> SELECT jenis_produk_id, COUNT(*) AS jumlah
+    -> FROM produk
+    -> GROUP BY jenis_produk_id;
++-----------------+--------+
+| jenis_produk_id | jumlah |
++-----------------+--------+
+|               1 |      3 |
+|               2 |      1 |
+|               4 |      2 |
+|               5 |      3 |
++-----------------+--------+
+4 rows in set (0.03 sec)
+
+(Tampilkan data pelanggan yang usianya di bawah rata-rata usia pelanggan)
+mysql> SELECT id, nama, YEAR(CURDATE()) - YEAR(tgl_lahir) AS umur
+    -> FROM pelanggan
+    -> WHERE YEAR(CURDATE()) - YEAR(tgl_lahir) < (
+    ->     SELECT AVG(YEAR(CURDATE()) - YEAR(tgl_lahir))
+    ->     FROM pelanggan
+    -> );
++----+--------------+------+
+| id | nama         | umur |
++----+--------------+------+
+|  1 | Agung Sedayu |   14 |
+|  6 | Gayatri Dwi  |   37 |
+|  7 | Dewi Gyat    |   36 |
+|  8 | Andre Haru   |   34 |
+|  9 | Ahmad Hasan  |   32 |
+| 10 | Cassanndra   |   34 |
++----+--------------+------+
+6 rows in set (0.03 sec)
+
+(Tampilkan data produk yang harganya di atas rata-rata harga produk)
+mysql> SELECT id, nama, harga_jual
+    -> FROM produk
+    -> WHERE harga_jual > (
+    ->     SELECT AVG(harga_jual)
+    ->     FROM produk
+    -> );
++----+------------------+------------+
+| id | nama             | harga_jual |
++----+------------------+------------+
+|  2 | Televisi 40 inch |    7737600 |
+|  6 | PC Desktop HP    |    9600000 |
+|  8 | Notebook Acer    |   10800000 |
+|  9 | Notebook Lenovo  |   12000000 |
++----+------------------+------------+
+4 rows in set (0.00 sec)
+
+(Tampilkan data pelanggan yang memiliki kartu dengan iuran tahunan di atas 90rb)
+
+(Tampilkan statistik data produk dengan harga di bawah rata-rata harga produk)
+mysql> SELECT jenis_produk_id, COUNT(*) AS jumlah
+    ->     FROM produk
+    -> WHERE harga_jual < (
+    ->     SELECT AVG(harga_jual)
+    ->     FROM produk
+    -> )
+    -> GROUP BY jenis_produk_id;
++-----------------+--------+
+| jenis_produk_id | jumlah |
++-----------------+--------+
+|               1 |      2 |
+|               2 |      1 |
+|               4 |      2 |
++-----------------+--------+
+3 rows in set (0.00 sec)
+
+(Tampilkan data pelanggan yang memiliki kartu dengan diskon di atas 3%)
+
+
