@@ -1,0 +1,64 @@
+(SOAL NO 1)
+MariaDB [dbpossib7]> SELECT
+    ->     Pesanan.id, Pesanan.tanggal, Pesanan.total,
+    ->     Pelanggan.kode, Pelanggan.nama,
+    ->     Kartu.nama, Kartu.diskon
+    ->     FROM Pesanan
+    ->     JOIN Pelanggan ON Pesanan.pelanggan_id = Pelanggan.id
+    ->    JOIN Kartu ON Pelanggan.kartu_id = Kartu.id;
++----+------------+---------+------+---------------+---------------+--------+
+| id | tanggal    | total   | kode | nama          | nama          | diskon |
++----+------------+---------+------+---------------+---------------+--------+
+|  1 | 2015-11-04 | 9720000 | C001 | Agung Sedayu  | Gold Utama    |   0.05 |
+|  2 | 2015-11-04 |   17500 | C003 | Sekar Mirah   | Gold Utama    |   0.05 |
+|  3 | 2015-11-04 |       0 | C006 | Gayatri Dwi   | Gold Utama    |   0.05 |
+|  4 | 2015-11-04 |       0 | C007 | Dewi Gyat     | Gold Utama    |   0.05 |
+|  5 | 2015-11-04 |       0 | C010 | Cassanndra    | Gold Utama    |   0.05 |
+|  6 | 2015-11-04 |   60000 | C002 | Pandan Wangi  | Platinum Jaya |    0.1 |
+|  7 | 2015-11-04 |       0 | C005 | Pradabashu    | Platinum Jaya |    0.1 |
+|  8 | 2015-11-04 |       0 | C004 | Swandaru Geni | Non Member    |      0 |
+|  9 | 2015-11-04 |       0 | C008 | Andre Haru    | Non Member    |      0 |
+| 10 | 2015-11-04 |       0 | C009 | Ahmad Hasan   | Non Member    |      0 |
+| 11 | 2021-05-31 | 1200000 | C003 | Sekar Mirah   | Gold Utama    |   0.05 |
+| 13 | 2023-08-06 |      40 | C001 | Agung Sedayu  | Gold Utama    |   0.05 |
+| 14 | 2023-01-01 |   20000 | C002 | Pandan Wangi  | Platinum Jaya |    0.1 |
++----+------------+---------+------+---------------+---------------+--------+
+13 rows in set (0.028 sec)
+
+(SOAL NO 2)
+MariaDB [dbpossib7]> SELECT
+    ->     Pembelian.id, Pembelian.tanggal, Pembelian.nomor,
+    ->     Produk.stok, Produk.harga_jual, Produk.nama,
+    ->     pembelian_produk_vendor.nama_vendor AS vendor_nama,
+    ->     pembelian_produk_vendor.kontak AS vendor_kontak
+    -> FROM Pembelian
+    -> JOIN Produk ON Pembelian.produk_id = Produk.id
+    -> JOIN pembelian_produk_vendor ON Pembelian.id = pembelian_produk_vendor.id;
+Empty set (0.001 sec)
+
+(SOAL NO 3)
+MariaDB [dbpossib7]> SELECT
+    ->     Pesanan.id, Pesanan.tanggal, Pesanan.total,
+    ->     Pelanggan.nama,
+    ->     Produk.kode, Produk.nama,
+    ->     Jenis_Produk.nama AS jenis_produk,
+    ->     Pesanan_Items.qty
+    -> FROM Pesanan
+    -> JOIN Pelanggan ON Pesanan.pelanggan_id = Pelanggan.id
+    -> JOIN Pesanan_Items ON Pesanan.id = Pesanan_Items.pesanan_id
+    -> JOIN Produk ON Pesanan_Items.produk_id = Produk.id
+    -> JOIN Jenis_Produk ON Produk.jenis_produk_id = Jenis_Produk.id;
++----+------------+---------+--------------+------+------------------+--------------+------+
+| id | tanggal    | total   | nama         | kode | nama             | jenis_produk | qty  |
++----+------------+---------+--------------+------+------------------+--------------+------+
+|  1 | 2015-11-04 | 9720000 | Agung Sedayu | TV01 | Televisi 21 inch | elektronik   |    1 |
+|  1 | 2015-11-04 | 9720000 | Agung Sedayu | K001 | Kulkas 2 pintu   | elektronik   |    1 |
+|  2 | 2015-11-04 |   17500 | Sekar Mirah  | TK01 | Teh Kotak        | minuman      |    5 |
+|  3 | 2015-11-04 |       0 | Gayatri Dwi  | TK01 | Teh Kotak        | minuman      |   10 |
+|  3 | 2015-11-04 |       0 | Gayatri Dwi  | TV01 | Televisi 21 inch | elektronik   |    1 |
+|  5 | 2015-11-04 |       0 | Cassanndra   | TK01 | Teh Kotak        | minuman      |   10 |
+|  6 | 2015-11-04 |   60000 | Pandan Wangi | TK01 | Teh Kotak        | minuman      |   20 |
+| 11 | 2021-05-31 | 1200000 | Sekar Mirah  | M001 | Meja Makan       | furniture    |    2 |
+|  6 | 2015-11-04 |   60000 | Pandan Wangi | TB01 | Teh Botol        | minuman      |    1 |
++----+------------+---------+--------------+------+------------------+--------------+------+
+9 rows in set (0.028 sec)
