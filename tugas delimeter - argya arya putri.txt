@@ -1,0 +1,143 @@
+
+soal 
+Soal 6.1: Procedure untuk Mengupdate Harga Jual
+MariaDB [dbpossib7]> DELIMITER $$
+MariaDB [dbpossib7]> create procedure pro_kenaikan_harga(
+    -> in jenis_produk INT,
+    -> in persentasi_kenaikan INT
+    -> )
+    -> begin
+    -> update produk
+    -> SET harga_jual = harga_jual + (harga_jual * persentasi_kenaikan / 100)
+    -> WHERE jenis_produk_id = jenis_produk;
+    -> END $$
+Query OK, 0 rows affected (0.013 sec)
+
+MariaDB [dbpossib7]> DELIMITER ;
+MariaDB [dbpossib7]>
+
+//eksekusinya
+MariaDB [dbpossib7]> CALL pro_naikan_harga(1, 10);  -- Jenis Produk ID = 1, kenaikan 10%
+Query OK, 5 rows affected (0.053 sec)
+
+Soal 6.1: Function untuk Menghitung Umur
+MariaDB [dbpossib7]> CREATE FUNCTION umur(tgl_lahir DATE)
+    -> RETURNS INT
+    -> BEGIN
+    ->     DECLARE umur INT;
+    ->     SET umur = YEAR(CURDATE()) - YEAR(tgl_lahir);
+    ->     RETURN umur;
+    -> END $$
+Query OK, 0 rows affected (0.003 sec)
+
+MariaDB [dbpossib7]>
+MariaDB [dbpossib7]> DELIMITER ;
+
+MariaDB [dbpossib7]> SELECT nama, umur(tgl_lahir) AS umur FROM pelanggan;
++---------------+------+
+| nama          | umur |
++---------------+------+
+| Agung Sedayu  |   14 |
+| Pandan Wangi  |   74 |
+| Sekar Mirah   |   41 |
+| Swandaru Geni |   43 |
+| Pradabashu    |   39 |
+| Gayatri Dwi   |   37 |
+| Dewi Gyat     |   36 |
+| Andre Haru    |   34 |
+| Ahmad Hasan   |   32 |
+| Cassanndra    |   34 |
++---------------+------+
+10 rows in set (0.050 sec)
+
+Soal 6.1: Function untuk Kategori Harga
+MariaDB [dbpossib7]> DROP FUNCTION IF EXISTS kategori_harga;
+Query OK, 0 rows affected (0.003 sec)
+
+MariaDB [dbpossib7]> DELIMITER $$
+MariaDB [dbpossib7]>
+MariaDB [dbpossib7]> CREATE FUNCTION kategori_harga(harga DOUBLE)
+    -> RETURNS VARCHAR(20)
+    -> BEGIN
+    ->     DECLARE kategori VARCHAR(20);
+    ->
+    ->     IF harga <= 500000 THEN
+    ->         SET kategori = 'murah';
+    ->     ELSEIF harga > 500000 AND harga <= 3000000 THEN
+    ->         SET kategori = 'sedang';
+    ->     ELSEIF harga > 3000000 AND harga <= 10000000 THEN
+    ->         SET kategori = 'mahal';
+    ->     ELSE
+    ->         SET kategori = 'sangat mahal';
+    ->     END IF;
+    ->
+    ->     RETURN kategori;
+    -> END $$
+Query OK, 0 rows affected (0.005 sec)
+
+MariaDB [dbpossib7]>
+MariaDB [dbpossib7]> DELIMITER ;
+MariaDB [dbpossib7]>
+
+MariaDB [dbpossib7]> DELIMITER ;
+MariaDB [dbpossib7]> SELECT nama, harga_jual, kategori_harga(harga_jual) AS kategori FROM produk;
++------------------+------------+--------------+
+| nama             | harga_jual | kategori     |
++------------------+------------+--------------+
+| Televisi 21 inch |    5765760 | mahal        |
+| Televisi 40 inch |    8511360 | mahal        |
+| Kulkas 2 pintu   |    5353920 | mahal        |
+| Meja Makan       |     660000 | sedang       |
+| Teh Kotak        |       4235 | murah        |
+| PC Desktop HP    |    9600000 | mahal        |
+| Teh Botol        |       3025 | murah        |
+| Notebook Acer    |   10800000 | sangat mahal |
+| Notebook Lenovo  |   12000000 | sangat mahal |
+| Produk A         |     165000 | murah        |
+| Produk B         |     275000 | murah        |
+| Produk C         |     700000 | sedang       |
++------------------+------------+--------------+
+12 rows in set (0.006 sec)
+
+Soal 5.2: Transaction dengan Savepoint
+MariaDB [dbpossib7]> START TRANSACTION;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [dbpossib7]>
+MariaDB [dbpossib7]> -- Insert 3 record produk
+MariaDB [dbpossib7]> INSERT INTO produk (kode, nama, harga_beli, harga_jual, stok, min_stok, jenis_produk_id)
+    -> VALUES ('PRD001', 'Produk A', 100000, 150000, 50, 10, 1),
+    ->        ('PRD002', 'Produk B', 200000, 250000, 30, 5, 1),
+    ->        ('PRD003', 'Produk C', 500000, 700000, 20, 3, 2);
+ERROR 1062 (23000): Duplicate entry 'PRD001' for key 'kode_UNIQUE'
+MariaDB [dbpossib7]>
+MariaDB [dbpossib7]> -- Update stok salah satu produk
+MariaDB [dbpossib7]> UPDATE produk SET stok = stok + 10 WHERE kode = 'PRD001';
+Query OK, 1 row affected (0.007 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpossib7]>
+MariaDB [dbpossib7]> -- Buat savepoint
+MariaDB [dbpossib7]> SAVEPOINT before_delete;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [dbpossib7]>
+MariaDB [dbpossib7]> -- Hapus salah satu data pembayaran
+MariaDB [dbpossib7]> DELETE FROM pembayaran WHERE id = 1;
+Query OK, 1 row affected (0.010 sec)
+
+MariaDB [dbpossib7]>
+MariaDB [dbpossib7]> -- Kembali ke savepoint
+MariaDB [dbpossib7]> ROLLBACK TO SAVEPOINT before_delete;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [dbpossib7]>
+MariaDB [dbpossib7]> -- Update data iuran salah satu kartu
+MariaDB [dbpossib7]> UPDATE kartu SET iuran = iuran + 50000 WHERE id = 1;
+Query OK, 1 row affected (0.004 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpossib7]>
+MariaDB [dbpossib7]> -- Commit transaction
+MariaDB [dbpossib7]> COMMIT;
+Query OK, 0 rows affected (0.002 sec)
